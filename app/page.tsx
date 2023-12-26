@@ -1,113 +1,385 @@
+"use client"
 import Image from 'next/image'
+import Link from 'next/link'
+import { useState } from 'react'
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
+  const [openMenu,setOpenMenu] = useState(false)
+  return ( 
+    <div className=' w-screen h-screen flex flex-col'>
+      <div className=' w-full relative '>
+        <div className='  w-full'>
+          <Image
+          src={"/images/desktop/image-header.jpg"}
+          width={2880}
+          height={1600}
+          className=' md:flex hidden object-fit'
+          alt='header'/>  
+          <Image
+          src={"/images/mobile/image-header.jpg"}
+          width={750}
+          height={1076}
+          className=' flex md:hidden object-fit'
+          alt='header'/>  
+        </div>
+        <div className=' absolute w-full flex flex-col justify-center items-center top-1/4'>
+          <div className=' text-5xl text-center uppercase md:text-5xl lg:text-7xl font-fraunces font-black text-white tracking-widest '>
+            we are creatives
+          </div>
+          <div className='mt-20 md:mt-20 lg:mt-32'>
             <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            src={"/images/icon-arrow-down.svg"}
+            width={36}
+            height={114}
+            className=''
+            alt='arrow'/>
+          </div>
+        </div>
+        <div className=" absolute p-7  top-0 left-0 w-full flex flex-row justify-between">
+            <div>
+                <Image
+                src={"/images/logo.svg"}
+                width={124}
+                height={24}
+                className=' w-full object-cover'
+                alt='logo'/>
+            </div>
+            <div className=' md:flex hidden justify-center items-center text-sm text-white flex-row space-x-10'>
+                <Link href={"/"}>
+                    About
+                </Link>
+                <Link href={"/"}>
+                    Services
+                </Link>
+                <Link href={"/"}>
+                    Projects
+                </Link>
+                <Link href={"/"} className=' text-black bg-white px-4 py-2 text-xs rounded-full font-bold uppercase'>
+                    Contact
+                </Link>
+            </div>
+            <button className=' md:hidden flex' onClick={()=>{setOpenMenu(!openMenu)}}>
+              <Image
+              src={"/images/icon-hamburger.svg"}
+              width={24}
+              height={18}
+              alt='menu'/>
+            </button>
+        </div> 
+        {openMenu && (
+          <div className='absolute top-20 left-0 w-full md:hidden flex flex-col-reverse justify-center items-center'>
+            <div className=' flex justify-center py-10 text-custom-700 space-y-8 font-semibold  items-center flex-col  w-10/12 bg-white'>
+              <Link onClick={()=>{setOpenMenu(false)}} href={"/"}>
+                  About
+              </Link>
+              <Link onClick={()=>{setOpenMenu(false)}} href={"/"}>
+                  Services
+              </Link>
+              <Link onClick={()=>{setOpenMenu(false)}} href={"/"}>
+                  Projects
+              </Link>
+              <Link href={"/"} onClick={()=>{setOpenMenu(false)}} className=' text-black bg-custom-200 px-4 py-2  font-fraunces rounded-full font-bold uppercase'>
+                  Contact
+              </Link>
+            </div>
+            <div className=' flex w-full justify-end mr-[16.67%]'>
+              <div className="w-0 h-0 
+                border-t-[40px] border-t-transparent
+                border-r-[50px] border-r-white
+                border-b-[0px] border-b-transparent">
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+      <div className=' flex flex-col-reverse md:flex-row'>
+        <div className='flex flex-col justify-center items-center  md:w-1/2 w-full'>
+          <div className=' md:py-0 py-10 w-10/12 md:w-1/2 space-y-7'>
+            <div className=' text-4xl md:text-start text-center font-fraunces text-custom-600 md:text-3xl lg:text-5xl font-black'>
+              Transform your brand
+            </div>
+            <div className=' text-base md:text-start text-center text-custom-700 md:text-xs lg:text-base'>
+              We are a full-service creative agency specializing in helping brands grow fast. Engage your clients through compelling visuals that do most of the marketing for you.
+            </div>
+            <div className='md:text-start text-center md:text-xs lg:text-base underline-offset-1 underline decoration-custom-1000 hover:decoration-custom-200  decoration-8 cursor-pointer uppercase font-black font-fraunces'>
+              Learn More
+            </div>
+          </div>
+
+        </div>
+        <div className=' hidden md:flex w-1/2'>
+          <Image
+          src={"/images/desktop/image-transform.jpg"}
+          width={720}
+          height={600}
+          className=' object-cover w-full'
+          alt='egg'/>
+        </div>
+        <div className=' md:hidden flex w-full'>
+          <Image
+          src={"/images/mobile/image-transform.jpg"}
+          width={750}
+          height={624}
+          className=' object-cover w-full'
+          alt='egg'/>
         </div>
       </div>
+      <div className=' flex flex-col-reverse md:flex-row-reverse'>
+        <div className='flex flex-col justify-center items-center  md:w-1/2 w-full'>
+          <div className=' md:py-0 py-10 w-10/12 md:w-1/2 space-y-7'>
+            <div className='text-4xl md:text-start text-center font-fraunces text-custom-600 md:text-3xl lg:text-5xl font-black'>
+              Stand out to the right audience 
+            </div>
+            <div className=' text-base md:text-start text-center md:text-xs lg:text-base text-custom-700'>
+              Using a collaborative formula of designers, researchers, photographers, videographers, and copywriters, we’ll build and extend your brand in digital places. 
+            </div>
+            <div className='md:text-start text-center  md:text-xs lg:text-base underline-offset-1 underline decoration-custom-1100 hover:decoration-custom-100  decoration-8 cursor-pointer uppercase font-black font-fraunces'>
+              Learn More
+            </div>
+          </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+        </div>
+        <div className=' hidden md:flex w-1/2'>
+          <Image
+          src={"/images/desktop/image-stand-out.jpg"}
+          width={720}
+          height={600}
+          className=' object-cover w-full'
+          alt='glass'/>
+        </div>
+        <div className=' md:hidden flex w-full'>
+          <Image
+          src={"/images/mobile/image-stand-out.jpg"}
+          width={750}
+          height={624}
+          className=' object-cover w-full'
+          alt='glass'/>
+        </div>
       </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      <div className=' flex flex-col md:flex-row'>
+        <div className=' w-full md:w-1/2 relative'>
+          <Image
+          src={"/images/desktop/image-graphic-design.jpg"}
+          width={720}
+          height={600}
+          className=' hidden md:flex w-full object-cover'
+          alt='cherry'/>
+          <Image
+          src={"/images/mobile/image-graphic-design.jpg"}
+          width={750}
+          height={1200}
+          className=' md:hidden flex w-full object-cover'
+          alt='cherry'/>
+          <div className=' bottom-10 text-center absolute items-center w-full flex justify-center flex-col'>
+            <div className='text-3xl min-[425px]:text-5xl md:text-3xl lg:text-5xl text-custom-300 font-fraunces font-black'>
+              Graphic design
+            </div>
+            <div className='min-[425px]:text-xl  md:text-xs lg:text-base w-10/12 md:w-1/2 mt-5 lg:mt-10 font-barlow text-custom-300 font-semibold'>
+              Great design makes you memorable. We deliver artwork that underscores your brand message and captures potential clients’ attention.
+            </div>
+          </div>
+        </div>
+        <div className=' w-full md:w-1/2 relative'>
+          <Image
+          src={"/images/desktop/image-photography.jpg"}
+          width={720}
+          height={600}
+          className=' hidden md:flex w-full object-cover'
+          alt='orange'/>
+          <Image
+          src={"/images/mobile/image-photography.jpg"}
+          width={750}
+          height={1200}
+          className=' md:hidden flex w-full object-cover'
+          alt='orange'/>
+          <div className=' bottom-10 text-center absolute items-center w-full flex justify-center flex-col'>
+            <div className='text-3xl min-[425px]:text-5xl  md:text-3xl lg:text-5xl text-custom-400 font-fraunces font-black'>
+              Photography 
+            </div>
+            <div className='min-[425px]:text-xl  md:text-xs lg:text-base w-10/12 md:w-1/2 mt-5 lg:mt-10 font-barlow text-custom-400 font-semibold'>
+              Increase your credibility by getting the most stunning, high-quality photos that improve your business image.
+            </div>
+          </div>
+        </div>
       </div>
-    </main>
-  )
-}
+      <div className=' flex flex-col justify-center items-center'>
+        <div className=' mt-20 md:mt-40 uppercase text-xl md:text-2xl text-custom-900 tracking-widest  font-fraunces font-black'>
+          Client testimonials
+        </div>
+        <div className=' mt-20 md:space-y-0 space-y-16 space-x-0 md:space-x-6 mb-10 md:mb-40 w-9/12 flex flex-col md:flex-row h-auto'>
+          <div className=' w-full md:w-1/3 space-y-14 items-center flex flex-col'>
+            <div>
+              <Image
+              src={"/images/image-emily.jpg"}
+              width={144}
+              height={144}
+              className=' w-16 h-16 rounded-full'
+              alt='emily'/>
+            </div>
+            <div className='md:text-sm lg:text-base text-center font-semibold text-custom-700'>
+              We put our trust in Sunnyside and they delivered, making sure our needs were met and deadlines were always hit. 
+            </div>
+            <div className=' flex flex-col'>
+              <div className=' text-center text-custom-600 font-fraunces font-black text-xl'>
+                Emily R.
+              </div>
+              <div className=' text-center text-sm font-semibold mt-3 text-custom-800'>
+                Marketing Director
+              </div>
+            </div>
+          </div>
+          <div className=' w-full md:w-1/3 space-y-14 items-center flex flex-col'>
+            <div>
+              <Image
+              src={"/images/image-thomas.jpg"}
+              width={144}
+              height={144}
+              className=' w-16 h-16 rounded-full'
+              alt='thomas'/>
+            </div>
+            <div className='md:text-sm lg:text-base text-center font-semibold text-custom-700'>
+              Sunnyside’s enthusiasm coupled with their keen interest in our brand’s success made it a satisfying and enjoyable experience.
+            </div>
+            <div className=' flex flex-col'>
+              <div className=' text-center text-custom-600 font-fraunces font-black text-xl'>
+                Thomas S.
+              </div>
+              <div className=' text-center text-sm font-semibold mt-3 text-custom-800'>
+                Chief Operating
+              </div>
+            </div>
+          </div>
+          <div className='w-full md:w-1/3 space-y-14 items-center flex flex-col'>
+            <div>
+              <Image
+              src={"/images/image-jennie.jpg"}
+              width={144}
+              height={144}
+              className=' w-16 h-16 rounded-full'
+              alt='jennie'/>
+            </div>
+            <div className='md:text-sm lg:text-base text-center font-semibold text-custom-700'>
+              Officer Incredible end result! Our sales increased over 400% when we worked with Sunnyside. Highly recommended! 
+            </div>
+            <div className=' flex flex-col'>
+              <div className=' text-center text-custom-600 font-fraunces font-black text-xl'>
+                Jennie F. 
+              </div>
+              <div className=' text-center text-sm font-semibold mt-3 text-custom-800'>
+                Business Owner
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className=' grid grid-cols-2 md:grid-cols-4'>
+        <div className=' md:flex hidden'>
+          <Image
+          src={"/images/desktop/image-gallery-milkbottles.jpg"}
+          width={720}
+          height={894}
+          alt='milk'/>
+        </div>
+        <div className=' md:flex hidden'>
+          <Image
+          src={"/images/desktop/image-gallery-orange.jpg"}
+          width={720}
+          height={894}
+          alt='orange'/>
+        </div>
+        <div className=' md:flex hidden'>
+          <Image
+          src={"/images/desktop/image-gallery-cone.jpg"}
+          width={720}
+          height={894}
+          alt='cone'/>
+        </div>
+        <div className=' md:flex hidden'>
+          <Image
+          src={"/images/desktop/image-gallery-sugarcubes.jpg"}
+          width={720}
+          height={894}
+          alt='sugarcubes'/>
+        </div>
+
+
+        <div className=' md:hidden flex'>
+          <Image
+          src={"/images/mobile/image-gallery-milkbottles.jpg"}
+          width={376}
+          height={376}
+          alt='milk'/>
+        </div>
+        <div className=' md:hidden flex'>
+          <Image
+          src={"/images/mobile/image-gallery-orange.jpg"}
+          width={376}
+          height={376}
+          alt='orange'/>
+        </div>
+        <div className=' md:hidden flex'>
+          <Image
+          src={"/images/mobile/image-gallery-cone.jpg"}
+          width={376}
+          height={376}
+          alt='cone'/>
+        </div>
+        <div className=' md:hidden flex'>
+          <Image
+          src={"/images/mobile/image-gallery-sugar-cubes.jpg"}
+          width={376}
+          height={376}
+          alt='sugarcubes'/>
+        </div>
+      </div>
+      <div className=' flex flex-col bg-custom-500'>
+        <div className=' mt-20 text-5xl font-black text-custom-300 flex justify-center items-center'>
+          sunnyside
+        </div>
+        <div className=' mt-16 space-x-10 md:space-x-16 font-semibold  text-custom-300 justify-center flex flex-row'>
+          <div className=' hover:text-white cursor-pointer'>
+            About
+          </div>
+          <div className=' hover:text-white cursor-pointer'>
+            Services
+          </div>
+          <div className=' hover:text-white cursor-pointer'>
+            Projects
+          </div>
+        </div>
+        <div className=' justify-center items-center space-x-10 flex flex-row mt-32 mb-20'>
+          <Link href={"/"}>
+            <Image
+            src={"/images/icon-facebook.svg"}
+            width={30}
+            height={30}
+            className=' hover:text-white'
+            alt='facebook'/>
+          </Link>
+          <Link href={"/"}>
+            <Image
+            src={"/images/icon-instagram.svg"}
+            width={30}
+            height={30}
+            alt='instagram'/>
+          </Link>
+          <Link href={"/"}>
+            <Image
+            src={"/images/icon-twitter.svg"}
+            width={30}
+            height={30}
+            alt='twitter'/>
+          </Link>
+          <Link href={"/"}>
+            <Image
+            src={"/images/icon-pinterest.svg"}
+            width={30}
+            height={30}
+            alt='pinterest'/>
+          </Link>
+          
+        </div>
+
+      </div>
+    </div>
+  )}
